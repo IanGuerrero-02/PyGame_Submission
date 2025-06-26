@@ -31,6 +31,7 @@ class AlienInvasion:
             self._check_events()
             self.ship.update()
             self._update_bullet()
+            self._update_alien()
             self._update_screen()
 
     def _check_events(self):
@@ -108,7 +109,9 @@ class AlienInvasion:
             alien.rect.y = alien_height + 2 * alien.rect.height * row_number        
             self.aliens.add(alien)
     
-    
+    def _update_alien(self):
+        """Update the positions of all aliens in the fleet."""
+        self.aliens.update()
     def _update_screen(self):
         """Update images on the screen, and flip to the new screen."""
         self.screen.fill(self.settings.bg_color)
