@@ -32,7 +32,6 @@ class AlienInvasion:
             for bullet in self.bullet.copy():
                 if bullet.rect.bottom <=0:
                     self.bullets.remove(bullet)
-            print(len(self.bullet))
 
             self._update_screen()
 
@@ -66,8 +65,9 @@ class AlienInvasion:
 
     def _fire_bullet(self):
         """Create a new bullet and add it to the bullets group."""
-        new_bullet = Bullet(self)
-        self.bullet.add(new_bullet)
+        if len(self.bullet) < self.settings.bullet_allowed:
+            new_bullet = Bullet(self)
+            self.bullet.add(new_bullet)
                 
                 
 
