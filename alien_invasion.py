@@ -26,13 +26,7 @@ class AlienInvasion:
         while True:
             self._check_events()
             self.ship.update()
-            self.bullet.update()
-
-            #Get rid of bullets that have disappeared.
-            for bullet in self.bullet.copy():
-                if bullet.rect.bottom <=0:
-                    self.bullets.remove(bullet)
-
+            self._update_bullet()
             self._update_screen()
 
     def _check_events(self):
@@ -70,7 +64,17 @@ class AlienInvasion:
             self.bullet.add(new_bullet)
                 
                 
+    def _update_bullet(self):
+        """Update position of bullets and get rid of old bullets."""
+        #Update bullet positions.
+        self.bullet.update()
 
+        #Get rid of bullets that have disappeared.
+        for bullet in self.bullet.copy():
+            if bullet.rect.bottom <=0:
+                self.bullets.remove(bullet)
+    
+    
     def _update_screen(self):
         """Update images on the screen, and flip to the new screen."""
         self.screen.fill(self.settings.bg_color)
